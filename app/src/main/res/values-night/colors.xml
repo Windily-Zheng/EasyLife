@@ -5,4 +5,8 @@
     <color name="colorAccent">#0277BD</color>
     <color name="act_background_black_white">#A5D6A7</color>
     <color name="text_color">#ffffff</color>
+    <color name="schedule_color">#1DE9B6</color>
+    <color name="note_color">#00E5FF</color>
+    <color name="travel_color">#AA00FF</color>
+    <color name="statistic_color">#F50057</color>
 </resources>

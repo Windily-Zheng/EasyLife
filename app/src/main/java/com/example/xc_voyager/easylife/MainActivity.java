@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,14 +20,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private List<CommonNote> commonNoteList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //recycler view部分
+        initCommonNotes();
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);//在content_main布局中
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
+        recyclerView.setAdapter(homeAdapter);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -130,5 +145,18 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void initCommonNotes(){
+        for(int i = 0; i <= 4; i++){
+            CommonNote c1 = new CommonNote("Schedule "+i, R.drawable.schedule);
+            commonNoteList.add(c1);
+            CommonNote c2 = new CommonNote("Schedule "+i, R.drawable.book_open);
+            commonNoteList.add(c2);
+            CommonNote c3 = new CommonNote("Schedule "+i, R.drawable.train);
+            commonNoteList.add(c3);
+            CommonNote c4 = new CommonNote("Schedule "+i, R.drawable.chart_bar);
+            commonNoteList.add(c4);
+        }
     }
 }

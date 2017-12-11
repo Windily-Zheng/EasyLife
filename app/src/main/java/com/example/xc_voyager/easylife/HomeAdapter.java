@@ -19,13 +19,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView noteImage;
-        TextView textImage;
+        TextView noteText;
 
         public ViewHolder(View view){
             super(view);
             noteImage = (ImageView)view.findViewById(R.id.common_note_image);
-            textImage = (TextView)view.findViewById(R.id.common_note_text);
-
+            noteText = (TextView)view.findViewById(R.id.common_note_text);
         }
     }
 
@@ -42,7 +41,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-
+        CommonNote commonNote = mNote.get(position);
+        holder.noteImage.setImageResource(commonNote.getImageId());
+        holder.noteText.setText(commonNote.getTextName());
     }
 
     @Override

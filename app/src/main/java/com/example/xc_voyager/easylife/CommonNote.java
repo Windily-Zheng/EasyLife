@@ -6,15 +6,15 @@ package com.example.xc_voyager.easylife;
 
 public class CommonNote{
     private String text_name;
-    private String image_text;
-    public CommonNote(String text_name, String image_text){
+    private int image_id;
+    public CommonNote(String text_name, int image_id){
         this.text_name = text_name;
-        this.image_text = image_text;
+        this.image_id = image_id;
     }
     public String getTextName(){
         return text_name;
     }
-    public String getImagetext(){
-        return image_text;
+    public int getImageId(){
+        return image_id;
     }
 }
