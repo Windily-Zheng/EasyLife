@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -148,14 +149,19 @@ public class MainActivity extends BaseActivity
     }
 
     private void initCommonNotes(){
+//        ImageView img;
+//        img = (ImageView)findViewById(R.id.common_note_image1);
+//        img.setAlpha(0.5f);
+//        img = (ImageView)findViewById(R.id.common_note_image2);
+//        img.setAlpha(0.5f);
         for(int i = 0; i <= 4; i++){
-            CommonNote c1 = new CommonNote("Schedule "+i, R.drawable.schedule);
+            CommonNote c1 = new CommonNote("Schedule "+i, "Have a picnic", "2017/12/14", R.drawable.schedule, R.drawable.ic_date_range_black_24dp);
             commonNoteList.add(c1);
-            CommonNote c2 = new CommonNote("Schedule "+i, R.drawable.book_open);
+            CommonNote c2 = new CommonNote("Note "+i, "Android is fun!", "2017/12/14", R.drawable.book_open, R.drawable.ic_date_range_black_24dp);
             commonNoteList.add(c2);
-            CommonNote c3 = new CommonNote("Schedule "+i, R.drawable.train);
+            CommonNote c3 = new CommonNote("Travel "+i, "To Shanghai at 15:00 PM.", "2017/12/14", R.drawable.train, R.drawable.ic_date_range_black_24dp);
             commonNoteList.add(c3);
-            CommonNote c4 = new CommonNote("Schedule "+i, R.drawable.chart_bar);
+            CommonNote c4 = new CommonNote("Statistic "+i, "Income chart of last month.", "2017/12/14", R.drawable.chart_bar, R.drawable.ic_date_range_black_24dp);
             commonNoteList.add(c4);
         }
     }
