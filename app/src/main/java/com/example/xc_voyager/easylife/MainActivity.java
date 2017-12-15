@@ -21,8 +21,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +43,7 @@ public class MainActivity extends BaseActivity
         recyclerView.setLayoutManager(linearLayoutManager);
         HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
         recyclerView.setAdapter(homeAdapter);
+        recyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));//分割线
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -149,20 +153,22 @@ public class MainActivity extends BaseActivity
     }
 
     private void initCommonNotes(){
-//        ImageView img;
-//        img = (ImageView)findViewById(R.id.common_note_image1);
-//        img.setAlpha(0.5f);
-//        img = (ImageView)findViewById(R.id.common_note_image2);
-//        img.setAlpha(0.5f);
         for(int i = 0; i <= 4; i++){
-            CommonNote c1 = new CommonNote("Schedule "+i, "Have a picnic", "2017/12/14", R.drawable.schedule, R.drawable.ic_date_range_black_24dp);
+            CommonNote c1 = new CommonNote("Schedule "+i, "Have a picnic", getCurrentTime(), R.drawable.schedule, R.drawable.clock);
             commonNoteList.add(c1);
-            CommonNote c2 = new CommonNote("Note "+i, "Android is fun!", "2017/12/14", R.drawable.book_open, R.drawable.ic_date_range_black_24dp);
+            CommonNote c2 = new CommonNote("Note "+i, "Android is fun!", getCurrentTime(), R.drawable.book_open, R.drawable.clock);
             commonNoteList.add(c2);
-            CommonNote c3 = new CommonNote("Travel "+i, "To Shanghai at 15:00 PM.", "2017/12/14", R.drawable.train, R.drawable.ic_date_range_black_24dp);
+            CommonNote c3 = new CommonNote("Travel "+i, "To Shanghai at 15:00 PM.", getCurrentTime(), R.drawable.train, R.drawable.clock);
             commonNoteList.add(c3);
-            CommonNote c4 = new CommonNote("Statistic "+i, "Income chart of last month.", "2017/12/14", R.drawable.chart_bar, R.drawable.ic_date_range_black_24dp);
+            CommonNote c4 = new CommonNote("Statistic "+i, "Income chart of last month.", getCurrentTime(), R.drawable.chart_bar, R.drawable.clock);
             commonNoteList.add(c4);
         }
+    }
+
+    private String getCurrentTime(){
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        date.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        String str = date.format(new Date());
+        return str;
     }
 }
