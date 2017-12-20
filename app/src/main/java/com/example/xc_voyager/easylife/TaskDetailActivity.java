@@ -37,11 +37,16 @@ public class TaskDetailActivity extends ListActivity {
     private ListView listView = null;
     // 提醒日期
     private int mYear;
+    String mmYear;
     private int mMonth;
+    String mmMonth;
     private int mDay;
+    String mmDay;
     // 提醒时间
     private int mHour;
+    String mmHour;
     private int mMinute;
+    String mmMinute;
     // 日期显示TextView
     private TextView dateName, dateDesc;
     // 时间显示TextView
@@ -82,12 +87,17 @@ public class TaskDetailActivity extends ListActivity {
                 mYear = Integer.parseInt(strs[0]);
                 mMonth = Integer.parseInt(strs[1]);
                 mDay = Integer.parseInt(strs[2]);
+                mmYear = String.format("%02d", mYear);
+                mmMonth = String.format("%02d", mMonth);
+                mmDay = String.format("%02d", mDay);
             }
 
             if (time1 != null && time1.length() > 0) {
                 String[] strs = time1.split(":");
                 mHour = Integer.parseInt(strs[0]);
                 mMinute = Integer.parseInt(strs[1]);
+                mmHour = String.format("%02d", mHour);
+                mmMinute = String.format("%02d", mMinute);
             }
         }
 
@@ -110,7 +120,7 @@ public class TaskDetailActivity extends ListActivity {
         final Calendar c = Calendar.getInstance();
         // 获得当前日期、时间
         mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
+        mMonth = 1 + c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
@@ -170,7 +180,7 @@ public class TaskDetailActivity extends ListActivity {
     // ListView Adatper，该类实现了列表的每一项通过自定义视图实现
     class ViewAdapter extends BaseAdapter {
         // 列表显示内容
-        String[] strs = { "是否开启", "日期", "时间", "内容", "开启闹钟" };
+        String[] strs = { "是否开启提醒", "日期", "时间", "内容", "开启闹钟" };
         // 获得列表列数
         @Override
         public int getCount() {
@@ -209,14 +219,19 @@ public class TaskDetailActivity extends ListActivity {
                     dateName = (TextView) v.findViewById(R.id.name);
                     dateDesc = (TextView) v.findViewById(R.id.desc);
                     dateName.setText(strs[position]);
-                    dateDesc.setText(mYear + "/" + mMonth + "/" + mDay);
+                    mmYear = String.format("%02d", mYear);
+                    mmMonth = String.format("%02d", mMonth);
+                    mmDay = String.format("%02d", mDay);
+                    dateDesc.setText(mmYear + "/" + mmMonth + "/" + mmDay);
                     return v;
                 // 提醒时间
                 case 2:
                     timeName = (TextView) v.findViewById(R.id.name);
                     timeDesc = (TextView) v.findViewById(R.id.desc);
                     timeName.setText(strs[position]);
-                    timeDesc.setText(mHour + ":" + mMinute);
+                    mmHour = String.format("%02d", mHour);
+                    mmMinute = String.format("%02d", mMinute);
+                    timeDesc.setText(mmHour + ":" + mmMinute);
                     return v;
                 // 提醒内容
                 case 3:
@@ -253,7 +268,7 @@ public class TaskDetailActivity extends ListActivity {
         switch (id) {
             // 显示日期对话框
             case DATE_DIALOG_ID:
-                return new DatePickerDialog(this, mDateSetListener, mYear, mMonth,
+                return new DatePickerDialog(this, mDateSetListener, mYear, mMonth-1,
                         mDay);
             // 显示时间对话框
             case TIME_DIALOG_ID:
@@ -279,7 +294,7 @@ public class TaskDetailActivity extends ListActivity {
         // 获得系统时间
         final long time1 = System.currentTimeMillis();
         Calendar c = Calendar.getInstance();
-        c.set(mYear, mMonth, mDay, mHour, mMinute);
+        c.set(mYear, mMonth-1, mDay, mHour, mMinute);
         long time2 = c.getTimeInMillis();
         if (flag&&(time2-time1)>0&&on_off==1){
             am.set(AlarmManager.RTC_WAKEUP, time2, pi);
@@ -310,7 +325,9 @@ public class TaskDetailActivity extends ListActivity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     mHour = hourOfDay;
                     mMinute = minute;
-                    timeDesc.setText(mHour + ":" + mMinute);
+                    String mmHour = String.format("%02d", mHour);
+                    String mmMinute = String.format("%02d", mMinute);
+                    timeDesc.setText(mmHour + ":" + mmMinute);
                 }
             };
     // 日期选择对话框
@@ -319,9 +336,12 @@ public class TaskDetailActivity extends ListActivity {
                 public void onDateSet(DatePicker view, int year, int monthOfYear,
                                       int dayOfMonth) {
                     mYear = year;
-                    mMonth = monthOfYear;
+                    mMonth = 1 + monthOfYear;
                     mDay = dayOfMonth;
-                    dateDesc.setText(mYear + "/" + mMonth + "/" + mDay);
+                    mmYear = String.format("%02d", mYear);
+                    mmMonth = String.format("%02d", mMonth);
+                    mmDay = String.format("%02d", mDay);
+                    dateDesc.setText(mmYear + "/" + mmMonth + "/" + mmDay);
                 }
             };
     // 保存或修改备忘录信息

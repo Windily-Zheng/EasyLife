@@ -22,9 +22,11 @@
         <activity
             android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule" />
+            <!--android:theme="@style/AppTheme" />-->
         <provider android:name="TaskListProvider"
-            android:authorities="com.amaker.provider.TaskList"/>
-        <activity android:name="TaskDetailActivity">
+            android:authorities="com.amaker.provider.TaskList" />
+        <activity android:name="TaskDetailActivity"
+            android:label="@string/title_activity_schedule" >
             <intent-filter>
                 <action android:name="android.intent.action.NEW" />
                 <category android:name="android.intent.category.DEFAULT" />
