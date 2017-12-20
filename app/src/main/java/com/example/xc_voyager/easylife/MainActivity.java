@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.schedule) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(this, ScheduleActivity.class);
             startActivity(intent);
         } else if (id == R.id.note) {
 
