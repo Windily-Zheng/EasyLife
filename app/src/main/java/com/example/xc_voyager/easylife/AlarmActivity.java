@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,10 +35,14 @@ public class AlarmActivity extends Activity {
         // 显示时间
         n.tickerText = msg;
         tv.setText(msg);
-
+        // 设置图标
+        //Resources res=getResources();
+        //Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.nv);
+        n.icon = R.drawable.nv;
         // 设置声音提示
-        n.sound = Uri.parse("file:///sdcard/fallbackring.ogg");
+        //n.sound = Uri.parse("file:///sdcard/fallbackring.ogg");
         // 发出通知
+        assert nm != null;
         nm.notify(ID, n);
         // 取消通知
         btn.setOnClickListener(new OnClickListener() {

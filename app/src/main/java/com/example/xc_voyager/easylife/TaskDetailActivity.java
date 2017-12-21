@@ -135,10 +135,10 @@ public class TaskDetailActivity extends ListActivity {
                     // 设置是否开启提醒
                     case 0:
                         ctv1 = (CheckedTextView) v;
-                        if (ctv1.isChecked()) {
+                        if (!ctv1.isChecked()) {
                             on_off = 0;
                         } else {
-                            on_off = 1;
+                            on_off = 1;     //开启提醒
                         }
                         break;
                     // 设置提醒日期
@@ -156,7 +156,7 @@ public class TaskDetailActivity extends ListActivity {
                     // 设置是否开启语音提醒
                     case 4:
                         ctv2 = (CheckedTextView) v;
-                        if (ctv2.isChecked()) {
+                        if (!ctv2.isChecked()) {
                             alarm = 0;
                             setAlarm(false);
                         } else {
@@ -297,8 +297,10 @@ public class TaskDetailActivity extends ListActivity {
         c.set(mYear, mMonth-1, mDay, mHour, mMinute);
         long time2 = c.getTimeInMillis();
         if (flag&&(time2-time1)>0&&on_off==1){
+            assert am != null;
             am.set(AlarmManager.RTC_WAKEUP, time2, pi);
         }else{
+            assert am != null;
             am.cancel(pi);
         }
     }
