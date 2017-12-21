@@ -180,7 +180,7 @@ public class TaskDetailActivity extends ListActivity {
     // ListView Adatper，该类实现了列表的每一项通过自定义视图实现
     class ViewAdapter extends BaseAdapter {
         // 列表显示内容
-        String[] strs = { "是否开启提醒", "日期", "时间", "内容", "开启闹钟" };
+        String[] strs = { "开启通知", "日期", "时间", "内容", "开启声音提醒"};
         // 获得列表列数
         @Override
         public int getCount() {

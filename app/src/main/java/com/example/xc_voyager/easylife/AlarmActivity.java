@@ -11,10 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * Created by ThinkPad on 2017/12/19.
- */
-
 public class AlarmActivity extends Activity {
     public static final int ID = 1;
 

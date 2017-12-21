@@ -57,6 +57,8 @@ public class ScheduleActivity extends ListActivity {
         Cursor cursor = managedQuery(getIntent().getData(), PROJECTION, null,
                 null, Tasks.DEFAULT_SORT_ORDER);
         // 创建Adapter
+        //StringBuffer strbuf = new StringBuffer("Schedule ");
+        //strbuf.append(Tasks._ID);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_2, cursor,
                 new String[] {Tasks._ID, Tasks.CONTENT },
