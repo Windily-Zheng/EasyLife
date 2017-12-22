@@ -61,7 +61,7 @@ public class ScheduleActivity extends ListActivity {
         //strbuf.append(Tasks._ID);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_2, cursor,
-                new String[] {Tasks._ID, Tasks.CONTENT },
+                new String[] {Tasks.DATE1, Tasks.CONTENT },
                 new int[] { android.R.id.text1,android.R.id.text2 });
         // 将备忘录信息显示到ListView
         setListAdapter(adapter);
