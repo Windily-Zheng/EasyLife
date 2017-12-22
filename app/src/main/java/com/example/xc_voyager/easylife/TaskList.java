@@ -6,8 +6,7 @@ import android.provider.BaseColumns;
 /**
  * 备忘录常量类
  */
-
-public class TaskList {
+public final class TaskList {
     // 授权常量
     public static final String AUTHORITY = "com.amaker.provider.TaskList";
 
