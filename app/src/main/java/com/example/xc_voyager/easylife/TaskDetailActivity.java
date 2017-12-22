@@ -209,15 +209,15 @@ public class TaskDetailActivity extends ListActivity {
                                     null);
                     ctv1.setText(strs[position]);
                     if (on_off == 0) {
-                        ctv1.setChecked(false);
+                        listView.setItemChecked(position, false);
                     } else {
-                        ctv1.setChecked(true);
+                        listView.setItemChecked(position, true);
                     }
                     return ctv1;
                 // 提醒日期
                 case 1:
-                    dateName = (TextView) v.findViewById(R.id.name);
-                    dateDesc = (TextView) v.findViewById(R.id.desc);
+                    dateName =  v.findViewById(R.id.name);
+                    dateDesc = v.findViewById(R.id.desc);
                     dateName.setText(strs[position]);
                     mmYear = String.format("%02d", mYear);
                     mmMonth = String.format("%02d", mMonth);
@@ -226,8 +226,8 @@ public class TaskDetailActivity extends ListActivity {
                     return v;
                 // 提醒时间
                 case 2:
-                    timeName = (TextView) v.findViewById(R.id.name);
-                    timeDesc = (TextView) v.findViewById(R.id.desc);
+                    timeName = v.findViewById(R.id.name);
+                    timeDesc = v.findViewById(R.id.desc);
                     timeName.setText(strs[position]);
                     mmHour = String.format("%02d", mHour);
                     mmMinute = String.format("%02d", mMinute);
@@ -235,8 +235,8 @@ public class TaskDetailActivity extends ListActivity {
                     return v;
                 // 提醒内容
                 case 3:
-                    contentName = (TextView) v.findViewById(R.id.name);
-                    contentDesc = (TextView) v.findViewById(R.id.desc);
+                    contentName = v.findViewById(R.id.name);
+                    contentDesc = v.findViewById(R.id.desc);
                     contentName.setText(strs[position]);
                     contentDesc.setText(content);
                     return v;
@@ -249,9 +249,9 @@ public class TaskDetailActivity extends ListActivity {
                     ctv2.setText(strs[position]);
 
                     if (alarm == 0) {
-                        ctv2.setChecked(false);
+                        listView.setItemChecked(position, false);
                     } else {
-                        ctv2.setChecked(true);
+                        listView.setItemChecked(position, true);
                     }
                     return ctv2;
                 default:
@@ -310,7 +310,7 @@ public class TaskDetailActivity extends ListActivity {
      */
     private void showDialog1(String msg) {
         View v = li.inflate(R.layout.item_content, null);
-        final EditText contentET = (EditText) v.findViewById(R.id.content);
+        final EditText contentET = v.findViewById(R.id.content);
         contentET.setText(content);
         new AlertDialog.Builder(this).setView(v).setMessage(msg).setCancelable(
                 false).setPositiveButton("确定",
@@ -350,7 +350,7 @@ public class TaskDetailActivity extends ListActivity {
     protected void onPause() {
         super.onPause();
         saveOrUpdate();
-    };
+    }
 
     // 保存或修改备忘录信息
     private void saveOrUpdate() {
