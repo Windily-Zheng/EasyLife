@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,8 +23,8 @@ public class AlarmActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm);
         // 获得Button、TextView实例
-        Button btn = (Button) findViewById(R.id.cancelButton01);
-        TextView tv = (TextView)findViewById(R.id.msgTextView01);
+        Button btn = findViewById(R.id.cancelButton01);
+        TextView tv = findViewById(R.id.msgTextView01);
 
         // 获得NotificationManager实例
         String service = Context.NOTIFICATION_SERVICE;
@@ -32,6 +33,7 @@ public class AlarmActivity extends Activity {
         Notification n = new Notification();
         // 设置显示提示信息，该信息也会在状态栏显示
         String msg = getIntent().getStringExtra("msg");
+        boolean voice = getIntent().getBooleanExtra("voice",true);
         // 显示时间
         n.tickerText = msg;
         tv.setText(msg);
@@ -40,7 +42,9 @@ public class AlarmActivity extends Activity {
         //Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.nv);
         n.icon = R.drawable.nv;
         // 设置声音提示
-        //n.sound = Uri.parse("file:///sdcard/fallbackring.ogg");
+        if(voice)
+            n.sound = Uri.parse("file://Environment.getExternalStorageDirectory().getPath()/fallbackring.ogg");
+
         // 发出通知
         assert nm != null;
         nm.notify(ID, n);
