@@ -35,6 +35,7 @@ import com.example.xc_voyager.easylife.TaskList.Tasks;
 public class TaskDetailActivity extends ListActivity {
     // 备忘录信息列表
     private ListView listView = null;
+    ViewAdapter viewAdapter = new ViewAdapter();
     // 提醒日期
     private int mYear;
     String mmYear;
@@ -112,7 +113,7 @@ public class TaskDetailActivity extends ListActivity {
         // 实例化LayoutInflater
         li = getLayoutInflater();
         // 设置ListView Adapter
-        listView.setAdapter(new ViewAdapter());
+        listView.setAdapter(viewAdapter);
         // 可多选
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -132,41 +133,43 @@ public class TaskDetailActivity extends ListActivity {
                                     long id) {
 
                 switch (position) {
-                    // 设置是否开启提醒
-                    case 0:
-                        ctv1 = (CheckedTextView) v;
-                        if (!ctv1.isChecked()) {
-                            on_off = 0;
-                        } else {
-                            on_off = 1;     //开启提醒
-                        }
-                        break;
                     // 设置提醒日期
-                    case 1:
+                    case 0:
                         showDialog(DATE_DIALOG_ID);
                         break;
                     // 设置提醒时间
-                    case 2:
+                    case 1:
                         showDialog(TIME_DIALOG_ID);
                         break;
                     // 设置提醒内容
-                    case 3:
+                    case 2:
                         showDialog1("请输入内容：");
+                        break;
+                    // 设置是否开启提醒
+                    case 3:
+                        ctv1 = (CheckedTextView) v;
+                        if (!ctv1.isChecked()) {
+                            on_off = 0;
+                            alarm = 0;
+                            setAlarm(false);   //只要修改了日期时间或者内容，都需要更新一下闹钟
+                        } else {
+                            on_off = 1;     //开启提醒
+                            setAlarm(true);   //只要修改了日期时间或者内容，都需要更新一下闹钟
+                        }
                         break;
                     // 设置是否开启语音提醒
                     case 4:
                         ctv2 = (CheckedTextView) v;
                         if (!ctv2.isChecked()) {
                             alarm = 0;
-                            setAlarm(false);
                         } else {
                             alarm = 1;
-                            setAlarm(true);
                         }
                         break;
                     default:
                         break;
                 }
+                viewAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -180,7 +183,7 @@ public class TaskDetailActivity extends ListActivity {
     // ListView Adatper，该类实现了列表的每一项通过自定义视图实现
     class ViewAdapter extends BaseAdapter {
         // 列表显示内容
-        String[] strs = { "开启通知", "日期", "时间", "内容", "开启声音提醒"};
+        String[] strs = { "日期", "时间", "内容", "开启通知", "开启声音提醒"};
         // 获得列表列数
         @Override
         public int getCount() {
@@ -201,8 +204,34 @@ public class TaskDetailActivity extends ListActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View v = li.inflate(R.layout.item_row, null);
             switch (position) {
-                // 是否开启该条备忘录
+                // 提醒日期
                 case 0:
+                    dateName =  v.findViewById(R.id.name);
+                    dateDesc = v.findViewById(R.id.desc);
+                    dateName.setText(strs[position]);
+                    mmYear = String.format("%02d", mYear);
+                    mmMonth = String.format("%02d", mMonth);
+                    mmDay = String.format("%02d", mDay);
+                    dateDesc.setText(mmYear + "/" + mmMonth + "/" + mmDay);
+                    return v;
+                // 提醒时间
+                case 1:
+                    timeName = v.findViewById(R.id.name);
+                    timeDesc = v.findViewById(R.id.desc);
+                    timeName.setText(strs[position]);
+                    mmHour = String.format("%02d", mHour);
+                    mmMinute = String.format("%02d", mMinute);
+                    timeDesc.setText(mmHour + ":" + mmMinute);
+                    return v;
+                // 提醒内容
+                case 2:
+                    contentName = v.findViewById(R.id.name);
+                    contentDesc = v.findViewById(R.id.desc);
+                    contentName.setText(strs[position]);
+                    contentDesc.setText(content);
+                    return v;
+                // 是否开启该条通知
+                case 3:
                     ctv1 = (CheckedTextView) li
                             .inflate(
                                     android.R.layout.simple_list_item_multiple_choice,
@@ -214,32 +243,6 @@ public class TaskDetailActivity extends ListActivity {
                         listView.setItemChecked(position, true);
                     }
                     return ctv1;
-                // 提醒日期
-                case 1:
-                    dateName =  v.findViewById(R.id.name);
-                    dateDesc = v.findViewById(R.id.desc);
-                    dateName.setText(strs[position]);
-                    mmYear = String.format("%02d", mYear);
-                    mmMonth = String.format("%02d", mMonth);
-                    mmDay = String.format("%02d", mDay);
-                    dateDesc.setText(mmYear + "/" + mmMonth + "/" + mmDay);
-                    return v;
-                // 提醒时间
-                case 2:
-                    timeName = v.findViewById(R.id.name);
-                    timeDesc = v.findViewById(R.id.desc);
-                    timeName.setText(strs[position]);
-                    mmHour = String.format("%02d", mHour);
-                    mmMinute = String.format("%02d", mMinute);
-                    timeDesc.setText(mmHour + ":" + mmMinute);
-                    return v;
-                // 提醒内容
-                case 3:
-                    contentName = v.findViewById(R.id.name);
-                    contentDesc = v.findViewById(R.id.desc);
-                    contentName.setText(strs[position]);
-                    contentDesc.setText(content);
-                    return v;
                 // 是否声音提示
                 case 4:
                     ctv2 = (CheckedTextView) li
@@ -253,6 +256,12 @@ public class TaskDetailActivity extends ListActivity {
                     } else {
                         listView.setItemChecked(position, true);
                     }
+                    // 如果没有开启通知则不会有声音提醒选项
+                    if (on_off == 0)
+                        ctv2.setVisibility(View.INVISIBLE);
+                    else
+                        ctv2.setVisibility(View.VISIBLE);
+
                     return ctv2;
                 default:
                     break;
@@ -288,6 +297,7 @@ public class TaskDetailActivity extends ListActivity {
         // 设置Intent action属性
         intent.setAction(BC_ACTION);
         intent.putExtra("msg", content);
+        intent.putExtra("voice", alarm);
         // 实例化PendingIntent
         final PendingIntent pi = PendingIntent.getBroadcast(
                 getApplicationContext(), 0, intent, 0);
@@ -296,7 +306,7 @@ public class TaskDetailActivity extends ListActivity {
         Calendar c = Calendar.getInstance();
         c.set(mYear, mMonth-1, mDay, mHour, mMinute);
         long time2 = c.getTimeInMillis();
-        if (flag&&(time2-time1)>0&&on_off==1){
+        if (flag&&(time2-time1)>0){
             assert am != null;
             am.set(AlarmManager.RTC_WAKEUP, time2, pi);
         }else{
@@ -318,6 +328,7 @@ public class TaskDetailActivity extends ListActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         content = contentET.getText().toString();
                         contentDesc.setText(content);
+                        setAlarm(on_off == 1);   //只要修改了日期时间或者内容，都需要更新一下闹钟
                     }
                 }).show();
     }
@@ -330,6 +341,7 @@ public class TaskDetailActivity extends ListActivity {
                     String mmHour = String.format("%02d", mHour);
                     String mmMinute = String.format("%02d", mMinute);
                     timeDesc.setText(mmHour + ":" + mmMinute);
+                    setAlarm(on_off == 1);   //只要修改了日期时间或者内容，都需要更新一下闹钟
                 }
             };
     // 日期选择对话框
@@ -344,6 +356,7 @@ public class TaskDetailActivity extends ListActivity {
                     mmMonth = String.format("%02d", mMonth);
                     mmDay = String.format("%02d", mDay);
                     dateDesc.setText(mmYear + "/" + mmMonth + "/" + mmDay);
+                    setAlarm(on_off == 1);   //只要修改了日期时间或者内容，都需要更新一下闹钟
                 }
             };
     // 保存或修改备忘录信息
