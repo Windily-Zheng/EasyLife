@@ -42,8 +42,8 @@ public class AlarmActivity extends Activity {
         Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.nv);
         n.icon = R.drawable.nv;
         // 设置声音提示
-        //if(voice)
-            //n.sound = Uri.parse("file://Environment.getExternalStorageDirectory().getPath()/fallbackring.ogg");
+        if(voice)
+            n.sound = Uri.parse("file://Environment.getExternalStorageDirectory().getPath()/Easylife/Spring.ogg");
 
         // 发出通知
         assert nm != null;

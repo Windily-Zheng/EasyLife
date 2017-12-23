@@ -18,11 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Note" />
+        <activity
+            android:name=".Note"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".ScheduleActivity"
-            android:label="@string/title_activity_schedule" />
-            <!--android:theme="@style/AppTheme" />-->
+            android:label="Schedule" />
         <provider android:name="TaskListProvider"
             android:authorities="com.amaker.provider.TaskList" />
         <activity android:name="TaskDetailActivity"
@@ -44,8 +45,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutUs"></activity>
-
+        <activity
+            android:name=".AboutUs"
+            android:theme="@style/AppTheme" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
