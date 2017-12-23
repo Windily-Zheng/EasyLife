@@ -135,7 +135,8 @@ public class MainActivity extends BaseActivity
             Intent intent = new Intent(this, Note.class);
             startActivity(intent);
         } else if (id == R.id.travel) {
-
+            Intent intent = new Intent(this, Travel.class);
+            startActivity(intent);
         } else if (id == R.id.statistic) {
 
         } else if (id == R.id.account) {

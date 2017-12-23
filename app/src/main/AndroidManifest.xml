@@ -23,11 +23,16 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AboutUs" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".Travel"
+            android:label="@string/title_activity_travel"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
