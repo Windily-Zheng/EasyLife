@@ -131,7 +131,8 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.schedule) {
-            // Handle the camera action
+            Intent intent = new Intent(this, ScheduleActivity.class);
+            startActivity(intent);
         } else if (id == R.id.note) {
 
         } else if (id == R.id.travel) {
