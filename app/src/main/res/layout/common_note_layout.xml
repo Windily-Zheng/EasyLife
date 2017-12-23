@@ -16,6 +16,7 @@
             android:id="@+id/common_note_image1"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginTop="4dp"
             />
 
         <TextView
@@ -25,10 +26,11 @@
 
             android:layout_above="@+id/common_note_text2"
             android:layout_toEndOf="@+id/common_note_image1"
+            android:paddingLeft="8dp"
+            android:layout_marginTop="4dp"
 
             android:text="aaaaaaaaaaa"
             android:textAlignment="viewStart"
-            android:textColor="#000"
             android:textSize="18sp" />
 
         <TextView
@@ -36,21 +38,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/common_note_image1"
+            android:layout_toEndOf="@+id/common_note_image1"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
 
+            style="@style/FontStyle1"
             android:text="bbbbbbbb"
             android:textAlignment="viewStart"
-            android:textColor="#000"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/common_note_image2"
             android:layout_width="18dp"
             android:layout_height="18dp"
 
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/common_note_text2"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/common_note_text2"
             />
 
         <TextView
@@ -59,12 +64,13 @@
             android:layout_height="wrap_content"
 
             android:layout_alignBottom="@id/common_note_image2"
-            android:layout_below="@id/common_note_text2"
-            android:layout_toEndOf="@id/common_note_image2"
+            android:layout_alignStart="@+id/common_note_text2"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="8dp"
 
             android:text="ccccccc"
             android:textAlignment="viewStart"
-            android:textColor="@android:color/darker_gray"
             android:textSize="12sp" />
 
     </RelativeLayout>
