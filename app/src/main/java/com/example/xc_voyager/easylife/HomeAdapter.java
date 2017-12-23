@@ -51,6 +51,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position){
         CommonNote commonNote = mNote.get(position);
         holder.noteImage1.setImageResource(commonNote.getImageId(1));
+        holder.noteImage1.setAlpha(0.5f);
         holder.noteImage2.setImageResource(commonNote.getImageId(2));
         holder.noteText1.setText(commonNote.getTextName(1));
         holder.noteText2.setText(commonNote.getTextName(2));
