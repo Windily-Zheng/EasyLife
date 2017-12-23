@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -136,7 +137,8 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.travel) {
 
         } else if (id == R.id.statistic) {
-
+            Intent intent = new Intent(this, StatisticActivity.class);
+            startActivity(intent);
         } else if (id == R.id.account) {
 
         } else if(id == R.id.settings){
