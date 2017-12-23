@@ -57,8 +57,6 @@ public class ScheduleActivity extends ListActivity {
         Cursor cursor = managedQuery(getIntent().getData(), PROJECTION, null,
                 null, Tasks.DEFAULT_SORT_ORDER);
         // 创建Adapter
-        //StringBuffer strbuf = new StringBuffer("Schedule ");
-        //strbuf.append(Tasks._ID);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_2, cursor,
                 new String[] {Tasks.DATE1, Tasks.CONTENT },
@@ -120,8 +118,6 @@ public class ScheduleActivity extends ListActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         // TODO Auto-generated method stub
-                        //Toast.makeText(getApplicationContext(), "你按了取消",
-                                //Toast.LENGTH_SHORT).show();
                         arg0.dismiss();
                     }
                 });
