@@ -33,7 +33,7 @@ public class AlarmActivity extends Activity {
         Notification n = new Notification();
         // 设置显示提示信息，该信息也会在状态栏显示
         String msg = getIntent().getStringExtra("msg");
-        boolean voice = getIntent().getBooleanExtra("voice",true);
+        int voice = getIntent().getIntExtra("voice",1);
         // 显示时间
         n.tickerText = msg;
         tv.setText(msg);
@@ -42,7 +42,7 @@ public class AlarmActivity extends Activity {
         Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.nv);
         n.icon = R.drawable.nv;
         // 设置声音提示
-        //if(voice)
+        //if(voice == 1)
             //n.sound = Uri.parse("file://Environment.getExternalStorageDirectory().getPath()/fallbackring.ogg");
 
         // 发出通知
