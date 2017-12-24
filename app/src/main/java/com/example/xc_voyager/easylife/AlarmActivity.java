@@ -42,8 +42,19 @@ public class AlarmActivity extends Activity {
         Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.nv);
         n.icon = R.drawable.nv;
         // 设置声音提示
+
         if(voice == 1)
-            n.sound = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Easylife/Spring.ogg");
+        {
+            //n.sound = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Easylife/Spring.ogg");
+            //添加系统默认铃声
+            n.defaults |= Notification.DEFAULT_SOUND;
+            //铃声循环播放直到用户响应
+            n.flags |= Notification.FLAG_INSISTENT;
+            //添加系统默认振动
+            n.defaults |= Notification.DEFAULT_VIBRATE;
+            //添加系统默认灯光
+            n.defaults |= Notification.DEFAULT_LIGHTS;
+        }
 
         // 发出通知
         assert nm != null;
