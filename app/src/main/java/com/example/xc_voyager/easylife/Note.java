@@ -3,6 +3,7 @@ package com.example.xc_voyager.easylife;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -75,7 +76,7 @@ public class Note extends AppCompatActivity
                 public void onClick(DialogInterface dialog, int which)
                 {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.CHINA);
-                    String fname = "/sdcard/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
+                    String fname = Environment.getExternalStorageDirectory().getPath() + "/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
                     View view = Note.this.getWindow().getDecorView();
                     view.setDrawingCacheEnabled(true);
                     view.buildDrawingCache();

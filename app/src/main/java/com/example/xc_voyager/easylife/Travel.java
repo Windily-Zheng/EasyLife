@@ -94,7 +94,7 @@ public class Travel extends AppCompatActivity implements
                     public void onSnapshotReady(Bitmap bitmap)
                     {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.CHINA);
-                        String fname = "/sdcard/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
+                        String fname = Environment.getExternalStorageDirectory().getPath()+"/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
                         try
                         {
                             FileOutputStream out = new FileOutputStream(fname);
