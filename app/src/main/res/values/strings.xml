@@ -79,4 +79,9 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_travel">Travel</string>
+
+    <string name="startCity">Start City</string>
+    <string name="destnCity">Destination City</string>
+    <string name="start">Place</string>
+    <string name="destn">Place</string>
 </resources>

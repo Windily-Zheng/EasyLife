@@ -89,8 +89,7 @@ public class Note extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        Intent intent = new Intent(Note.this, MainActivity.class);
-                        startActivity(intent);
+                        Note.this.finish();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener()
                 {
@@ -102,8 +101,7 @@ public class Note extends AppCompatActivity
                 }).show();
             else
             {
-                Intent intent = new Intent(Note.this, MainActivity.class);
-                startActivity(intent);
+                Note.this.finish();
             }
         }
         return super.onOptionsItemSelected(item);
