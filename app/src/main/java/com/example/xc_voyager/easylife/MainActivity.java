@@ -2,6 +2,7 @@ package com.example.xc_voyager.easylife;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,13 +43,13 @@ public class MainActivity extends BaseActivity
 
         setContentView(R.layout.activity_main);
         //recycler view部分
-        initCommonNotes();
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);//在content_main布局中
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
-        recyclerView.setAdapter(homeAdapter);
-        recyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));//分割线
+//        initCommonNotes();
+//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);//在content_main布局中
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
+//        recyclerView.setAdapter(homeAdapter);
+//        recyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));//分割线
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,6 +73,9 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);//更改drawerlayout图标的颜色
         navigationView.setNavigationItemSelectedListener(this);
+
+        ChartToImage.verifyPermission(this);
+        ChartToImage.createFolder();
     }
 
     @Override
@@ -137,9 +143,11 @@ public class MainActivity extends BaseActivity
             intent.putExtra("theme", theme);
             startActivity(intent);
         } else if (id == R.id.note) {
-
+            Intent intent = new Intent(this, Note.class);
+            startActivity(intent);
         } else if (id == R.id.travel) {
-
+            Intent intent = new Intent(this, Travel.class);
+            startActivity(intent);
         } else if (id == R.id.statistic) {
             Intent intent = new Intent(this, StatisticActivity.class);
             startActivity(intent);

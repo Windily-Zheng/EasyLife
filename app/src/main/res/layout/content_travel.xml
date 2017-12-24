@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.xc_voyager.easylife.Travel"
+    tools:showIn="@layout/activity_travel">
+
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/startCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#ffffff"
+            android:hint="@string/startCity"
+            android:inputType="text">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/startAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#ffffff"
+            android:hint="@string/start"
+            android:inputType="text">
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/destCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#ffffff"
+            android:hint="@string/destnCity"
+            android:inputType="text">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/destAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#ffffff"
+            android:hint="@string/destn"
+            android:inputType="text">
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btn_walk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walk"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_bus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bus"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drive"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
+
+
+</LinearLayout>

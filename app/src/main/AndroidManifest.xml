@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xc_voyager.easylife">
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    //获取设备网络状态，禁用后无法获取网络状态
+    <uses-permission android:name="android.permission.INTERNET"/>
+    //网络权限，当禁用后，无法进行检索等相关业务
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //读取设备硬件信息，统计数据
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    //读取系统信息，包含系统版本等信息，用作统计
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    //获取设备的网络状态，鉴权所需网络代理
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    //允许sd卡写权限，需写入地图数据，禁用后无法显示地图
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    //获取统计数据
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    //鉴权所需该权限获取进程列表
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/navigator_flat_128px"
+        android:icon="@mipmap/icon_rec"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/navigator_flat_128px"
-        android:supportsRtl="true"
-        >
+        android:roundIcon="@mipmap/icon"
+        android:supportsRtl="true">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="nmEXpB3qs1lhSxZs4030Wga6ZPADLIHj" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,37 +43,39 @@
         </activity>
         <activity
             android:name=".Note"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ScheduleActivity"
             android:label="Schedule" />
-        <provider android:name="TaskListProvider"
+
+        <provider
+            android:name=".TaskListProvider"
             android:authorities="com.amaker.provider.TaskList" />
-        <activity android:name="TaskDetailActivity"
-            android:label="@string/title_activity_schedule" >
+
+        <activity
+            android:name=".TaskDetailActivity"
+            android:label="@string/title_activity_schedule">
             <intent-filter>
                 <action android:name="android.intent.action.NEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <receiver android:name="TaskReceiver">
+
+        <receiver android:name=".TaskReceiver">
             <intent-filter>
-                <action android:name="com.amaker.ch17.TaskReceiver"/>
+                <action android:name="com.amaker.ch17.TaskReceiver" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <activity android:name="AlarmActivity">
+
+        <activity android:name=".AlarmActivity">
             <intent-filter>
-                <action android:name="com.amaker.ch17.AlarmAction"/>
+                <action android:name="com.amaker.ch17.AlarmAction" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".SettingsActivity"
-            android:label="Settings"
-            android:theme="@style/AppTheme"
-            >
-
         </activity>
 
         <activity android:name=".DemoStyleThemeActivity"
@@ -61,21 +85,35 @@
 
         </activity>
 
-        <activity android:name=".AboutUs"
-            android:label="AboutUs"
-            android:theme="@style/AppTheme"
-            >
-        </activity>
+        <activity
+            android:name=".AboutUs"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/"Settings"
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".StatisticActivity" />
-        <activity android:name=".StatisticInput" />
-        <activity android:name=".DrawChart" />
+        <activity
+            android:name=".Travel"
+            android:label="@string/title_activity_travel"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".StatisticActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".StatisticInput"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DrawLineChart"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".DrawPieChart"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".DrawBarChart"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".DrawHorizontalChart"
+            android:theme="@style/AppTheme"></activity>
     </application>
-
-    <uses-permission android:name="android.permission.VIBRATE" />
-
 </manifest>

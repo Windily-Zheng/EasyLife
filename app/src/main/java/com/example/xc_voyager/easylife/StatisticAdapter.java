@@ -67,6 +67,7 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.View
                 int position = holder.getAdapterPosition();
                 Statistic statistic = mStatisticList.get(position);
                 Intent intent = new Intent(mContext, StatisticInput.class);
+                intent.putExtra("Chart_type", statistic.getName());
                 mContext.startActivity(intent);
                 //Toast.makeText(v.getContext(), "You click image " + statistic.getName(), Toast.LENGTH_SHORT).show();
             }
@@ -79,7 +80,7 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position){
         Statistic statistic = mStatisticList.get(position);
         holder.statisticName.setText(statistic.getName());
-        //holder.statisticDescription.setText(statistic.getDescription());
+        holder.statisticDescription.setText(statistic.getDescription());
         Glide.with(mContext).load(statistic.getImageId()).into(holder.statisticImage);
     }
 
