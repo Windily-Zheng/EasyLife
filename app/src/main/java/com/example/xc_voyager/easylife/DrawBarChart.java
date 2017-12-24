@@ -51,7 +51,7 @@ public class DrawBarChart extends AppCompatActivity {
         int id = item.getItemId();
         if(id == R.id.action_save){
             ChartToImage.chartToImage(chart, "Bar Chart");
-            Toast.makeText(getApplicationContext(), "Your Bar Chart has been saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Your Bar Chart has been saved!"+ChartToImage.path1, Toast.LENGTH_SHORT).show();
         }
         return true;
     }

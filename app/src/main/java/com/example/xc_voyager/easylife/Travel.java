@@ -94,7 +94,7 @@ public class Travel extends AppCompatActivity implements
                     public void onSnapshotReady(Bitmap bitmap)
                     {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.CHINA);
-                        String fname = Environment.getExternalStorageDirectory().getPath()+"/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
+                        String fname = ChartToImage.path2 + simpleDateFormat.format(new Date()) + ".png";
                         try
                         {
                             FileOutputStream out = new FileOutputStream(fname);
@@ -103,10 +103,10 @@ public class Travel extends AppCompatActivity implements
                                 out.flush();
                                 out.close();
                             }
-                            Toast.makeText(Travel.this,"Screenshot saved!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Travel.this,"Screenshot saved!"+fname,Toast.LENGTH_SHORT).show();
                         }catch (Exception e)
                         {
-                            Toast.makeText(Travel.this,"Screenshot failed!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Travel.this,"Screenshot failed!"+fname,Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }

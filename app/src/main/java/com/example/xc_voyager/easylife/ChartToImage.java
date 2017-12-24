@@ -33,8 +33,12 @@ public class ChartToImage {
             path1 = Environment.getExternalStorageDirectory() + "/" + "Easylife/Charts/";
             path2 = Environment.getExternalStorageDirectory() + "/" + "Easylife/Images/";
             File f1 = new File(path1);
+            File f2 = new File(path2);
             if (!f1.exists()) {
                 f1.mkdirs();
+            }
+            if(!f2.exists()){
+                f2.mkdirs();
             }
         }
     }
@@ -45,6 +49,7 @@ public class ChartToImage {
             filename = type + "_" + count;
             Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
             chart.saveToGallery(filename, path1, "Android Chart Save", compressFormat, 85);
+//            Toast.makeText(ChartToImage.this, filename, Toast.LENGTH_SHORT);
             count++;
     }
 
