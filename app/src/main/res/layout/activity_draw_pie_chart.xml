@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xc_voyager.easylife.DrawChart">
+    tools:context="com.example.xc_voyager.easylife.DrawPieChart">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/linechart"
+    <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+        android:id="@+id/piechart"
         android:layout_margin="15dp"
-        >
+        android:background="#ffffff">
 
-    </com.github.mikephil.charting.charts.LineChart>
+    </com.github.mikephil.charting.charts.PieChart>
 
 </android.support.constraint.ConstraintLayout>

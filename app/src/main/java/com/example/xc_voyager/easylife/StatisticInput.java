@@ -13,7 +13,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StatisticInput extends AppCompatActivity {
 
@@ -33,14 +32,31 @@ public class StatisticInput extends AppCompatActivity {
             R.id.x5_input,
             R.id.y5_input
     };
+    String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic_input);
-        setTitle("Enter data");
+        Intent intent = getIntent();
+        title = intent.getStringExtra("Chart_type");
+        setTitle(title);
         final EditText editText = (EditText)findViewById(R.id.datanum_input);
         editText.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        EditText ed;
+        if(title.equals("Pie Chart")){
+            for(int i = 0; i < 12; i++){
+                ed = (EditText)findViewById(edit_id_array[i]);
+                if(i % 2 == 0)
+                ed.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+            }
+        }
+        else{
+            for(int i = 0; i < 12; i++){
+                ed = (EditText)findViewById(edit_id_array[i]);
+                ed.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+            }
+        }
         final TextView textView = (TextView)findViewById(R.id.showdatanum);
         editText.addTextChangedListener(new TextWatcher() {
             int data_num;
@@ -61,11 +77,7 @@ public class StatisticInput extends AppCompatActivity {
                 id_array[9] = R.id.tableRowy4;
                 id_array[10] = R.id.tableRowx5;
                 id_array[11] = R.id.tableRowy5;
-                EditText ed;
-                for(int i = 0; i < 12; i++){
-                    ed = (EditText)findViewById(edit_id_array[i]);
-                    ed.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-                }
+
             }
 
             @Override
@@ -100,7 +112,19 @@ public class StatisticInput extends AppCompatActivity {
                     editText = (EditText)findViewById(edit_id_array[i]);
                     chart_data.add(editText.getText().toString());
                 }
-                Intent intent  = new Intent(getApplicationContext(), DrawChart.class);
+                Intent intent;
+                if(title.equals("Line Chart")){
+                    intent  = new Intent(getApplicationContext(), DrawLineChart.class);
+                }
+                else if(title.equals("Pie Chart")){
+                    intent  = new Intent(getApplicationContext(), DrawPieChart.class);
+                }
+                else if(title.equals("Horizontal Chart")){
+                    intent  = new Intent(getApplicationContext(), DrawHorizontalChart.class);
+                }
+                else{//bar chart
+                    intent  = new Intent(getApplicationContext(), DrawBarChart.class);
+                }
                 intent.putStringArrayListExtra("chart_data", chart_data);
                 startActivity(intent);
             }

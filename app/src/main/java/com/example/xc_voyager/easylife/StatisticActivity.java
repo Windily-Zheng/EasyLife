@@ -7,15 +7,14 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class StatisticActivity extends AppCompatActivity {
 
     private Statistic[] statistics = new Statistic[]{
-            new Statistic("Chart1", R.drawable.chart1),
-            new Statistic("Chart2", R.drawable.chart2),
-            new Statistic("Chart3", R.drawable.chart3),
-            new Statistic("Chart4", R.drawable.chart4)
+            new Statistic("Line Chart", "You will draw a line chart.",R.drawable.chart1),
+            new Statistic("Pie Chart", "You will draw a pie chart.", R.drawable.chart2),
+            new Statistic("Horizontal Chart", "You will draw a horizontal chart.", R.drawable.chart3),
+            new Statistic("Bar Chart", "You will draw a Bar chart.", R.drawable.chart4)
     };
 
     private List<Statistic> statisticList = new ArrayList<>();
@@ -36,10 +35,8 @@ public class StatisticActivity extends AppCompatActivity {
 
     private void initChart(){
         statisticList.clear();
-        for(int i = 0; i < 50; i++){
-            Random random = new Random();
-            int index = random.nextInt(statistics.length);
-            statisticList.add(statistics[index]);
+        for(int i = 0; i < 4; i++){
+            statisticList.add(statistics[i]);
         }
     }
 }

@@ -8,11 +8,40 @@
     tools:context="com.example.xc_voyager.easylife.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <android.support.v7.widget.RecyclerView
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/main_recyclerview"-->
+
+        <!--/>-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_recyclerview"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-        />
+        <!--<ImageView-->
+            <!--android:layout_width="184dp"-->
+            <!--android:layout_height="171dp"-->
+            <!--android:layout_above="@+id/textView2"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginBottom="71dp"-->
+            <!--android:alpha="0.8"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/colorful_rec" />-->
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Welcome to EasyLife :)"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
