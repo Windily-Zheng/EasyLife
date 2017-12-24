@@ -49,7 +49,7 @@ public class TaskDetailActivity extends ListActivity {
     private int mMinute;
     String mmMinute;
     // theme
-    private int theme;
+    private static int theme;       //用static保证稳定性
     // 日期显示TextView
     private TextView dateName, dateDesc;
     // 时间显示TextView
