@@ -93,8 +93,8 @@ public class Travel extends AppCompatActivity implements
                     @Override
                     public void onSnapshotReady(Bitmap bitmap)
                     {
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.CHINA);
-                        String fname = /*Environment.getExternalStorageDirectory().getPath()*/"/sdcard/" + simpleDateFormat.format(new Date()) + ".png";
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.CHINA);
+                        String fname = "/sdcard/Easylife/Images/" + simpleDateFormat.format(new Date()) + ".png";
                         try
                         {
                             FileOutputStream out = new FileOutputStream(fname);
