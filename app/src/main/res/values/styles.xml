@@ -27,4 +27,24 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <!-- Theme switch -->
+    <style name="SwitchTheme1" parent="AppTheme">
+        <item name="colorPrimary">?attr/colorValue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@drawable/mydivider</item>
+
+    </style>
+
+    <style name="SwitchTheme2" parent="AppTheme">
+        <item name="colorValue">#FFFF00</item>
+
+    </style>
+
+    <style name="SwitchTheme3" parent="AppTheme">
+        <item name="colorValue">#FF0000</item>
+    </style>
+
+
 </resources>

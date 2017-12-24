@@ -32,10 +32,12 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private List<CommonNote> commonNoteList = new ArrayList<>();
-
+    private static int theme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        theme = getIntent().getIntExtra("theme",0);
+
         setContentView(R.layout.activity_main);
         //recycler view部分
         initCommonNotes();
@@ -132,6 +134,7 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.schedule) {
             Intent intent = new Intent(this, ScheduleActivity.class);
+            intent.putExtra("theme", theme);
             startActivity(intent);
         } else if (id == R.id.note) {
 

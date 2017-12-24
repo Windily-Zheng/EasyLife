@@ -7,5 +7,14 @@
         <!-- {@deprecated Use civ_circlebackground_color instead.} -->
         <attr name="civ_fill_color" format="color" />
         <attr name="civ_circle_background_color" format="color" />
+
+        <!-- Theme switch -->
+        <attr name="colorValue" format="color" />
+        <attr name="floatValue" format="float" />
+        <attr name="integerValue" format="integer" />
+        <attr name="booleanValue" format="boolean" />
+        <attr name="dimensionValue" format="dimension" />
+        <attr name="stringValue" format="string" />
+        <attr name="referenceValue" format="reference" />
     </declare-styleable>
 </resources>

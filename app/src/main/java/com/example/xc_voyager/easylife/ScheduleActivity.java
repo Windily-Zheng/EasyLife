@@ -27,7 +27,7 @@ public class ScheduleActivity extends ListActivity {
     // 菜单项常量
     private static final int NEW = 1;
     private static final int DEL = 2;
-
+    private static int theme;
     // 查询列数组
     private static final String[] PROJECTION = new String[] {
             Tasks._ID, 		// 0
@@ -42,6 +42,8 @@ public class ScheduleActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //
+        theme = getIntent().getIntExtra("theme",0);
         // 获得Intent
         setContentView(R.layout.schedule_main);
         //调用main视图
@@ -93,9 +95,10 @@ public class ScheduleActivity extends ListActivity {
                     b.putString("time1", time1);
 
                     b.putInt("on_off", on_off);
-
+                    b.putInt("theme", theme);
                     // 将备忘录信息添加到Intent
                     intent.putExtra("b", b);
+
                     // 启动备忘录详细信息Activity
                     intent.setClass(ScheduleActivity.this, TaskDetailActivity.class);
                     startActivity(intent);

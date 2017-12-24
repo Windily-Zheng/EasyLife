@@ -34,7 +34,7 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
-
+    private static int theme_choice = 0;
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -50,35 +50,26 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
 
+                // Add to-do
+                if(index == 0) { //that red theme
+                    theme_choice = 0;
+                } else if(index == 1) { //that yellow theme
+                    theme_choice = 1;
+                } else if(index == 2) { //that blue theme
+                    theme_choice = 2;
+                } else {
+                    //nothing to do
+
+                }
+
                 // Set the summary to reflect the new value.
                 preference.setSummary(
                         index >= 0
                                 ? listPreference.getEntries()[index]
                                 : null);
 
-            } else if (preference instanceof RingtonePreference) {
-                // For ringtone preferences, look up the correct display value
-                // using RingtoneManager.
-                if (TextUtils.isEmpty(stringValue)) {
-                    // Empty values correspond to 'silent' (no ringtone).
-                    //preference.setSummary(R.string.pref_ringtone_silent);
-
-                } else {
-                    Ringtone ringtone = RingtoneManager.getRingtone(
-                            preference.getContext(), Uri.parse(stringValue));
-
-                    if (ringtone == null) {
-                        // Clear the summary if there was a lookup error.
-                        preference.setSummary(null);
-                    } else {
-                        // Set the summary to reflect the new ringtone display
-                        // name.
-                        String name = ringtone.getTitle(preference.getContext());
-                        preference.setSummary(name);
-                    }
-                }
-
-            } else {
+            }
+            else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
                 preference.setSummary(stringValue);
@@ -176,7 +167,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home && getLocalClassName().equals("SettingsActivity")) {
+            //recreate main
             Intent intent = new Intent(this, MainActivity.class);
+            //transpot theme
+            intent.putExtra("theme", theme_choice);
             startActivity(intent);
             return true;
         }

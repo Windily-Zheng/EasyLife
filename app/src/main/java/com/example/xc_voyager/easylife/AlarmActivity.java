@@ -34,6 +34,7 @@ public class AlarmActivity extends Activity {
         // 设置显示提示信息，该信息也会在状态栏显示
         String msg = getIntent().getStringExtra("msg");
         int voice = getIntent().getIntExtra("voice",1);
+        int theme = getIntent().getIntExtra("theme", 0);
         // 显示时间
         n.tickerText = msg;
         tv.setText(msg);
@@ -43,13 +44,14 @@ public class AlarmActivity extends Activity {
         n.icon = R.drawable.nv;
         // 设置声音提示
 
-        if(voice == 1)
+        if(voice == 1 && theme != 2)
         {
             //n.sound = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Easylife/Spring.ogg");
             //添加系统默认铃声
             n.defaults |= Notification.DEFAULT_SOUND;
             //铃声循环播放直到用户响应
-            n.flags |= Notification.FLAG_INSISTENT;
+            if(theme == 0)
+                n.flags |= Notification.FLAG_INSISTENT;
             //添加系统默认振动
             n.defaults |= Notification.DEFAULT_VIBRATE;
             //添加系统默认灯光

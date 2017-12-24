@@ -11,18 +11,18 @@
 
 
     <!-- Example settings for Theme -->
-    <string name="pref_header_theme">Theme</string>
+    <string name="pref_header_theme">提醒设置</string>
 
-    <string name="pref_title_sync_frequency">Theme Choice</string>
+    <string name="pref_title_sync_frequency">响铃方式选择</string>
     <string-array name="pref_sync_frequency_titles">
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Blue</item>
+        <item>循环响铃</item>
+        <item>只响一次</item>
+        <item>不响铃</item>
     </string-array>
     <string-array name="pref_sync_frequency_values">
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Blue</item>
+        <item>循环响铃</item>
+        <item>只响一次</item>
+        <item>不响铃</item>
     </string-array>
 
 

@@ -48,6 +48,8 @@ public class TaskDetailActivity extends ListActivity {
     String mmHour;
     private int mMinute;
     String mmMinute;
+    // theme
+    private int theme;
     // 日期显示TextView
     private TextView dateName, dateDesc;
     // 时间显示TextView
@@ -82,7 +84,7 @@ public class TaskDetailActivity extends ListActivity {
             time1 = b.getString("time1");
             on_off = b.getInt("on_off");
             alarm = b.getInt("alarm");
-
+            theme = b.getInt("theme");
             if (date1 != null && date1.length() > 0) {
                 String[] strs = date1.split("/");
                 mYear = Integer.parseInt(strs[0]);
@@ -298,6 +300,7 @@ public class TaskDetailActivity extends ListActivity {
         intent.setAction(BC_ACTION);
         intent.putExtra("msg", content);
         intent.putExtra("voice", alarm);
+        intent.putExtra("theme", theme);
         // 实例化PendingIntent
         final PendingIntent pi = PendingIntent.getBroadcast(
                 getApplicationContext(), 0, intent, 0);
