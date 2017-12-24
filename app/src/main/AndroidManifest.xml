@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xc_voyager.easylife">
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -20,28 +23,37 @@
         </activity>
         <activity
             android:name=".Note"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ScheduleActivity"
             android:label="Schedule" />
-        <provider android:name="TaskListProvider"
+
+        <provider
+            android:name=".TaskListProvider"
             android:authorities="com.amaker.provider.TaskList" />
-        <activity android:name="TaskDetailActivity"
-            android:label="@string/title_activity_schedule" >
+
+        <activity
+            android:name=".TaskDetailActivity"
+            android:label="@string/title_activity_schedule">
             <intent-filter>
                 <action android:name="android.intent.action.NEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <receiver android:name="TaskReceiver">
+
+        <receiver android:name=".TaskReceiver">
             <intent-filter>
-                <action android:name="com.amaker.ch17.TaskReceiver"/>
+                <action android:name="com.amaker.ch17.TaskReceiver" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <activity android:name="AlarmActivity">
+
+        <activity android:name=".AlarmActivity">
             <intent-filter>
-                <action android:name="com.amaker.ch17.AlarmAction"/>
+                <action android:name="com.amaker.ch17.AlarmAction" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -50,15 +62,28 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".AboutUs" />
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".StatisticActivity" />
-        <activity android:name=".StatisticInput" />
-        <activity android:name=".DrawChart"></activity>
+        <activity
+            android:name=".StatisticActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".StatisticInput"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DrawLineChart"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".DrawPieChart"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".DrawBarChart"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".DrawHorizontalChart"
+            android:theme="@style/AppTheme"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

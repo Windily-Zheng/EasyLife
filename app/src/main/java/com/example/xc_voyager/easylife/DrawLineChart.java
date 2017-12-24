@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -18,17 +19,36 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrawChart extends AppCompatActivity {
+public class DrawLineChart extends AppCompatActivity {
 
     ArrayList<String> chart_data = new ArrayList<String>();
     int data_num;
+    Chart chart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_draw_chart);
+        setContentView(R.layout.draw_linechart);
         initData();
-        initChart();
+        setTitle("Line Chart");
+        initLineChart();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.chart_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.action_save){
+            ChartToImage.chartToImage(chart, "Line Chart");
+            Toast.makeText(getApplicationContext(), "Your Line Chart has been saved!", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 
     private void initData(){
@@ -37,8 +57,9 @@ public class DrawChart extends AppCompatActivity {
         data_num = chart_data.size()/2;
     }
 
-    private void initChart(){
+    private void initLineChart(){
         LineChart lineChart = (LineChart)findViewById(R.id.linechart);
+        chart = lineChart;
         List<Entry> entries = new ArrayList<Entry>();
         Float x, y;
         String str;
@@ -49,29 +70,25 @@ public class DrawChart extends AppCompatActivity {
             y = Float.parseFloat(str);
             entries.add(new Entry(x, y));
         }
-        LineDataSet dataSet = new LineDataSet(entries, "Your Data");
+        LineDataSet dataSet = new LineDataSet(entries, "Line Data");
         dataSet.setColor(0xFF2196F3);//千万记住是argb颜色，坑死了！
         dataSet.setCircleColor(Color.BLACK);
-        dataSet.setValueTextColor(0x64FFDA);
+        dataSet.setDrawValues(true);
         dataSet.setLineWidth(2.5f);
         dataSet.setDrawFilled(true);
-        dataSet.setValueTextSize(9.0f);
+        dataSet.setValueTextSize(12);
         dataSet.setHighLightColor(Color.RED);
 
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
-        //x轴坐标
+
         //description
         Description description = new Description();
         description.setText("Line Chart");
-        description.setTextSize(20);
+        description.setTextSize(12);
         description.setTextColor(Color.GREEN);
         lineChart.setDescription(description);
 
         lineChart.invalidate();
-    }
-
-    private void drawChart(){
-
     }
 }

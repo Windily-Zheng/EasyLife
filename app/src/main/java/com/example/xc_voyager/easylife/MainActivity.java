@@ -38,13 +38,13 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //recycler view部分
-        initCommonNotes();
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);//在content_main布局中
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
-        recyclerView.setAdapter(homeAdapter);
-        recyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));//分割线
+//        initCommonNotes();
+//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);//在content_main布局中
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        HomeAdapter homeAdapter = new HomeAdapter(commonNoteList);
+//        recyclerView.setAdapter(homeAdapter);
+//        recyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));//分割线
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,6 +68,9 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);//更改drawerlayout图标的颜色
         navigationView.setNavigationItemSelectedListener(this);
+
+        ChartToImage.verifyPermission(this);
+        ChartToImage.createFolder();
     }
 
     @Override
