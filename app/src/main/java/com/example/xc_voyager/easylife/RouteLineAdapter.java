@@ -66,7 +66,10 @@ public class RouteLineAdapter extends BaseAdapter
                 DrivingRouteLine drivingRouteLine = (DrivingRouteLine) routeLines.get(pos);
                 holder.name.setText("路线" + (pos + 1));
                 holder.lightNum.setText("红绿灯数：" + drivingRouteLine.getLightNum());
-                holder.dis.setText("拥堵距离：" + drivingRouteLine.getCongestionDistance() + "米");
+                if (drivingRouteLine.getDistance() < 10000)
+                    holder.dis.setText("距离：" + drivingRouteLine.getDistance() + "米");
+                else
+                    holder.dis.setText("距离：" + drivingRouteLine.getDistance() / 1000 + "公里");
                 break;
             case TRANSIT_ROUTE:
                 holder.name.setText("路线" + (pos + 1));
@@ -75,7 +78,10 @@ public class RouteLineAdapter extends BaseAdapter
                     holder.lightNum.setText(time / 60 + "分钟");
                 else
                     holder.lightNum.setText(time / 3600 + "小时" + (time % 3600) / 60 + "分钟");
-                holder.dis.setText("距离："+routeLines.get(pos).getDistance());
+                if (routeLines.get(pos).getDistance() < 10000)
+                    holder.dis.setText("距离：" + routeLines.get(pos).getDistance() + "米");
+                else
+                    holder.dis.setText("距离：" + routeLines.get(pos).getDistance() / 1000 + "公里");
                 break;
         }
         return convertView;
