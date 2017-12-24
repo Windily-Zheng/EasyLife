@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/navigator_flat_128px"
+        android:icon="@mipmap/icon_rec"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/navigator_flat_128px"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
